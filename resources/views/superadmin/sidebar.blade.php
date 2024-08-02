@@ -14,15 +14,15 @@
             
             {{-- test cartegory --}}
             <li><a href="{{url('view_category')}}"> <i class="icon-grid"></i>Cartegory </a></li>
-            <li><a href="{{url('view_category')}}"> <i class="icon-grid"></i>Roles </a></li>
-            <li><a href="{{url('view_category')}}"> <i class="icon-grid"></i>permissions </a></li>
+            <li><a href="{{url('')}}"> <i class="icon-grid"></i>Roles </a></li>
+            <li><a href="{{url('')}}"> <i class="icon-grid"></i>permissions </a></li>
             
             <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
             <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Job Listings </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
+                <li><a href="{{ url('add_job') }}">Add Job</a></li>
+                <li><a href="{{ url('view_job') }}">View Job</a></li>
                 <li><a href="#">Page</a></li>
               </ul>
             </li>

@@ -16,7 +16,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\Admin::class,
             'employer' => \App\Http\Middleware\Employer::class,
             'alumni' => \App\Http\Middleware\Alumni::class,
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         ]);
+       
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
