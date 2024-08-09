@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\JobListing;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class SuperAdminController extends Controller
 {
@@ -182,6 +185,40 @@ class SuperAdminController extends Controller
         
         return view('superadmin.view_job',compact('job'));
     }
+
+
+
+    // PERMISSIONS 
+    public function permission()
+    {
+        $permissions = Permission::get();
+        return view('role-permission.permission.index', ['permissions' => $permissions]);
+    }
+
+    
+    //ROLES
+
+    public function role()
+    {
+        
+        $roles = Role::get();
+        return view('role-permission.role.index', ['roles' => $roles]);
+    }
+
+    //USERS
+
+    public function user()
+    {
+        $users = User::get();
+        return view('role-permission.user.index', [
+            'users' => $users
+        ]);
+    }
+
+    
+
+
+
 }
 // side notes
 
@@ -193,3 +230,13 @@ class SuperAdminController extends Controller
         //  else{
         //     $job=JobListing::paginate(5);
         //  }
+
+
+        // ROLES 
+        
+
+
+
+
+
+        

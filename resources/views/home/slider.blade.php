@@ -1,3 +1,18 @@
+<style >
+    .btn-custom {
+    background-color: #E92829;
+    color: #ffffff; /* White text color for better contrast */
+    border-color: #E92829;
+}
+
+.btn-custom:hover {
+    background-color: #d32222; /* Slightly darker shade for hover effect */
+    border-color: #d32222;
+}
+
+</style>
+
+
 <div class="container-fluid p-0">
     <div class="owl-carousel header-carousel position-relative">
         <div class="owl-carousel-item position-relative">
@@ -8,7 +23,7 @@
                         <div class="col-10 col-lg-8">
                             <h1 class="display-3 text-white animated slideInDown mb-4">Find The Perfect Job That You Deserved</h1>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
+                            <a href="" class="btn btn-primary btn-custom py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
                             <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Find A Talent</a>
                         </div>
                     </div>
@@ -23,7 +38,7 @@
                         <div class="col-10 col-lg-8">
                             <h1 class="display-3 text-white animated slideInDown mb-4">Find The Best Startup Job That Fit You</h1>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
+                            <a href="" class="btn btn-primary btn-custom py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
                             <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Find A Talent</a>
                         </div>
                     </div>

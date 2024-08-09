@@ -1,3 +1,19 @@
+<style >
+    .btn-custom {
+    background-color: #E92829;
+    color: #ffffff; /* White text color for better contrast */
+    border-color: #E92829;
+}
+
+.btn-custom:hover {
+    background-color: #d32222; /* Slightly darker shade for hover effect */
+    border-color: #d32222;
+}
+
+</style>
+
+
+
 <div class="container-xxl bg-white p-0">
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -78,7 +94,7 @@
                
             </div>
             
-            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="" class="btn btn-primary btn-custom rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
             
         </div>
     </nav>

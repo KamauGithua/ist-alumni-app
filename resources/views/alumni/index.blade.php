@@ -1,11 +1,3 @@
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <h1>Alumni Dashboard</h1>
-    <p>Welcome, Alumni!</p>
-</div>
-@endsection --}}
 
 
 <!DOCTYPE html>

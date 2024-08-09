@@ -1,14 +1,18 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AlumniController;
-use App\Http\Controllers\EmployerController;
+use App\Http\Middleware\SuperAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Middleware\SuperAdmin;
+
 
 route::get('/',[HomeController::class,'home']);
 
@@ -91,10 +95,106 @@ Route::get('job_search',[SuperAdminController::class,'job_search'])->middleware(
 // end of superadmin Job Listings
 
 
+// PERMISSIONS  AND ROLES OF SUPERADMIN 
 
+#permissions
+
+  Route::get('permission', [SuperAdminController::class, 'permission'])->middleware(['auth','super-admin']);
+
+  Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
+      Route::resource('permissions', PermissionController::class);
+  
+  #Roles
+  Route::get('role', [SuperAdminController::class, 'role'])->middleware(['auth','super-admin']);
+  
+  
+  Route::resource('roles', RoleController::class);
+  Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
+  
+  Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
+  Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+  
+  #users
+  Route::get('user', [SuperAdminController::class, 'user'])->middleware(['auth','super-admin']);
+  
+  
+  Route::resource('users', UserController::class);
+      Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
+
+
+
+// ADMIN 
 //admin auth login
 
 Route::get('admin/dashboard',[AdminController::class,'index'])->middleware(['auth','admin']);
+
+//CATEGORIES & JOBS
+  # view 
+
+  Route::get('view_category', [AdminController::class, 'view_category'])->middleware(['auth','admin']);
+
+  #add
+
+Route::post('add_category',[AdminController::class,'add_category'])->middleware(['auth','admin']);
+
+#delete
+
+Route::get('delete_category/{id}',[AdminController::class,'delete_category'])->middleware(['auth','admin']);
+
+#edit
+
+route::get('edit_category/{id}',[AdminController::class,'edit_category'])->middleware(['auth','admin']);
+
+#update
+
+route::post('update_category/{id}',[AdminController::class,'update_category'])->middleware(['auth','admin']);
+// end of admin category
+
+// start of admin Job Listings
+
+Route::get('add_job',[AdminController::class,'add_job'])->middleware(['auth','admin']);
+
+#upload job
+Route::post('upload_job',[AdminController::class,'upload_job'])->middleware(['auth','admin']);
+
+#view
+Route::get('view_job', [AdminController::class, 'view_job'])->middleware(['auth','admin']);
+
+#delete
+Route::get('update_job/{id}',[AdminController::class,'update_job'])->middleware(['auth','admin']);
+
+#update
+
+route::post('edit_job/{id}',[AdminController::class,'edit_job'])->middleware(['auth','super-admin']);
+
+#search
+Route::get('job_search',[AdminController::class,'job_search'])->middleware(['auth','admin']);
+
+
+//ROLES AND PERMISSIONS
+#permissions
+Route::get('permission', [SuperAdminController::class, 'permission'])->middleware(['auth','admin']);
+
+Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
+    Route::resource('permissions', PermissionController::class);
+
+#Roles
+Route::get('role', [AdminController::class, 'role'])->middleware(['auth','admin']);
+
+
+Route::resource('roles', RoleController::class);
+Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
+Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
+Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+
+#users
+Route::get('user', [AdminController::class, 'user'])->middleware(['auth','admin']);
+
+
+Route::resource('users', UserController::class);
+    Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
+
+
 
 
 //employer auth login
