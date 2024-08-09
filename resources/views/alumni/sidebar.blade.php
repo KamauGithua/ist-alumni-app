@@ -13,6 +13,8 @@
           {{-- <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li> --}}
           
           {{-- test cartegory --}}
+          <li><a href="{{url('role')}}"> <i class="icon-grid"></i>Portfolio </a></li>
+
           <li><a href="{{url('view_category')}}"> <i class="icon-grid"></i>Cartegory </a></li>
           <li><a href="{{url('role')}}"> <i class="icon-grid"></i>Roles </a></li>
           <li><a href="{{url('permission')}}"> <i class="icon-grid"></i>Permissions </a></li>

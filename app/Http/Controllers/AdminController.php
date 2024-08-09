@@ -210,4 +210,9 @@ class AdminController extends Controller
             'users' => $users
         ]);
     }
+
+    public function project()
+    {
+        return view('projects.index');
+    }
 }

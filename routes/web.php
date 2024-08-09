@@ -9,10 +9,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SuperAdminController;
-
+use App\Http\Middleware\Alumni;
 
 route::get('/',[HomeController::class,'home']);
 
@@ -208,7 +209,35 @@ Route::get('alumni/dashboard',[AlumniController::class,'index'])->middleware(['a
 
 
 
+// start of alumni category
+
+  # view 
+
+  Route::get('view_category', [AlumniController::class, 'view_category'])->middleware(['auth','alumni']);
+
+  #add
+
+Route::post('add_category',[AlumniController::class,'add_category'])->middleware(['auth','alumni']);
+
+#delete
+
+Route::get('delete_category/{id}',[AlumniController::class,'delete_category'])->middleware(['auth','alumni']);
+
+#edit
+
+route::get('edit_category/{id}',[AlumniController::class,'edit_category'])->middleware(['auth','alumni']);
+
+#update
+
+route::post('update_category/{id}',[AlumniController::class,'update_category'])->middleware(['auth','alumni']);
+// end of alumni category
 
 
 
+// portfolio
+// Route::resource('projects', ProjectController::class);
+// Route::get('projects', [AlumniController::class, 'projects'])->middleware(['auth','alumni']);
 
+Route::middleware(['auth'])->group(function () {
+  Route::resource('projects', ProjectController::class);
+});
