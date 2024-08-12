@@ -1,19 +1,20 @@
 <?php
 
+use App\Http\Middleware\Alumni;
 use App\Http\Middleware\SuperAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Middleware\Alumni;
 
 route::get('/',[HomeController::class,'home']);
 
@@ -240,4 +241,27 @@ route::post('update_category/{id}',[AlumniController::class,'update_category'])-
 
 Route::middleware(['auth'])->group(function () {
   Route::resource('projects', ProjectController::class);
+});
+
+
+Route::middleware(['auth'])->group(function () {
+
+  Route::get('portfolios', [AlumniController::class, 'portfolios'])->middleware(['auth','alumni']);
+
+
+  // Route::get('portfolios', [PortfolioController::class, 'index'])->name('portfolios.index');
+  Route::get('portfolios/{portfolio}', [PortfolioController::class, 'show'])->name('portfolios.show');
+
+  Route::get('portfolios/create', [PortfolioController::class, 'create'])->name('portfolios.create');
+  Route::post('portfolios', [PortfolioController::class, 'store'])->name('portfolios.store');
+  Route::get('portfolios/{portfolio}/edit', [PortfolioController::class, 'edit'])->name('portfolios.edit');
+  Route::put('portfolios/{portfolio}', [PortfolioController::class, 'update'])->name('portfolios.update');
+  
+
+
+});
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+  Route::post('portfolios/{portfolio}/approve', [PortfolioController::class, 'approve'])->name('portfolios.approve');
 });

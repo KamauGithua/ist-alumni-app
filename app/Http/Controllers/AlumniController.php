@@ -218,6 +218,18 @@ class AlumniController extends Controller
         return view('projects.index');
     }
 
+
+
+    public function create()
+    {
+        return view('portfolios.create');
+    }
+
+    public function portfolios()
+    {
+        // $portfolios = Portfolio::where('user_id', auth()->id())->get();
+        return view('portfolios.index', compact('portfolios'));
+    }
 }
 
 

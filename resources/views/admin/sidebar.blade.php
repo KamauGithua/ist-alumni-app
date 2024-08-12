@@ -17,7 +17,7 @@
           <li><a href="{{url('role')}}"> <i class="icon-grid"></i>Roles </a></li>
           <li><a href="{{url('permission')}}"> <i class="icon-grid"></i>Permissions </a></li>
           <li><a href="{{url('user')}}"> <i class="icon-grid"></i>Users </a></li>
-          <li><a href="{{url('projects')}}"> <i class="icon-grid"></i>Projects </a></li>
+          {{-- <li><a href="{{url('projects')}}"> <i class="icon-grid"></i>Projects </a></li> --}}
 
           
           <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
