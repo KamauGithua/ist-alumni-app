@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head> 
-    @include('admin.css')
+    @include('superadmin.css')
   </head>
   <body>
-   @include('admin.header')
+   @include('superadmin.header')
     <div class="d-flex align-items-stretch">
       <!-- Sidebar Navigation-->
       @include('superadmin.sidebar')

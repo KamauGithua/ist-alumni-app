@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Portfolio extends Model
 {
     use HasFactory;
-    // protected $fillable = [
-    //     'bio', 'education', 'work_experience', 'skills', 'projects', 'profile_picture',
-    // ];
+    
+    protected $fillable = [
+        'basic_info', 'education', 'work_experience', 'skills', 'personal_projects', 
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

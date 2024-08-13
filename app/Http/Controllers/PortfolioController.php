@@ -27,37 +27,65 @@ public function show(Portfolio $portfolio)
     return view('portfolios.show', compact('portfolio'));
 }
     
-    public function create()
-{
-    return view('portfolios.create');
-}
+//     public function create()
+// {
+//     return view('portfolios.create');
+// }
+
+// public function store(Request $request)
+// {
+//     $validated = $request->validate([
+//         'basic_info' => 'required|string',
+//         'education' => 'required|string',
+//         'work_experience' => 'required|string',
+//         'skills' => 'required|string',
+//         'personal_projects' => 'required|string',
+//     ]);
+
+//     $portfolio = new Portfolio($validated);
+//     // $portfolio->user_id = auth()->id();
+//     // $portfolio->user_id = auth()->id();
+
+//     $portfolio->save();
+
+//     return redirect()->route('portfolios.show', $portfolio);
+
+//     // Validation and portfolio creation
+
+//     // Send notification to admin for approval
+//     $admins = User::where('role', 'admin')->get();
+//     Notification::send($admins, new PortfolioSubmittedForApproval($portfolio));
+
+//     return redirect()->route('portfolios.show', $portfolio);
+// }
 
 public function store(Request $request)
-{
-    $validated = $request->validate([
-        'basic_info' => 'required|string',
-        'education' => 'required|string',
-        'work_experience' => 'required|string',
-        'skills' => 'required|string',
-        'personal_projects' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'bio' => 'required|string',
+            'education' => 'required|string',
+            'work_experience' => 'required|string',
+            'skills' => 'required|string',
+            'projects' => 'required|string',
+            // 'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-    $portfolio = new Portfolio($validated);
-    // $portfolio->user_id = auth()->id();
-    // $portfolio->user_id = auth()->id();
+        $portfolio = new Portfolio();
+        $portfolio->basic_info = $request->basic_info;
+        $portfolio->education = $request->education;
+        $portfolio->work_experience = $request->work_experience;
+        $portfolio->skills = $request->skills;
+        $portfolio->personal_projects = $request->personal_projects;
 
-    $portfolio->save();
+        // if ($request->hasFile('profile_picture')) {
+        //     $filename = $request->file('profile_picture')->store('profile_pictures', 'public');
+        //     $portfolio->profile_picture = $filename;
+        // }
 
-    return redirect()->route('portfolios.show', $portfolio);
+        $portfolio->save();
 
-    // Validation and portfolio creation
-
-    // Send notification to admin for approval
-    $admins = User::where('role', 'admin')->get();
-    Notification::send($admins, new PortfolioSubmittedForApproval($portfolio));
-
-    return redirect()->route('portfolios.show', $portfolio);
-}
+        return redirect()->route('portfolios.index')->with('success', 'Portfolio created successfully.');
+    }
 
 public function edit(Portfolio $portfolio)
 {

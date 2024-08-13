@@ -36,10 +36,27 @@
                                 </div>
                             </div>
                            
+                           <div class="col-sm-12 col-md-4 d-flex align-items-center justify-content-end">
+                            <!-- View Details Button -->
+                            <a href="{{url('job_details',$jobs->id)}}" class="btn btn-primary me-3">View Details</a>
+                            <!-- Apply Button -->
+                        
+                            {{-- <a href="" class="btn btn-success">Apply Now</a> --}}
+                            <form action="{{url('add_cart',$jobs->id)}}" method="POST">
+                                @csrf
+                                <input type="submit" class="btn btn-primary me-3" value="Apply Now">
+                            </form>
+                        </div>
+
                         </div>
                     </div>
+                    {{-- <a href="{{ route('jobs.show', $jobs->id) }}" class="btn btn-primary me-3">View Details</a>
+                    <a href="{{ route('jobs.apply', $jobs->id) }}" class="btn btn-success">Apply Now</a> --}}
                     
                 </div>
+
+
+                
 
                 @endforeach
 

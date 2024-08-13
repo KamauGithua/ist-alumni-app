@@ -14,17 +14,19 @@ return new class extends Migration
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('basic_info');
-            $table->text('education');
-            $table->text('work_experience');
-            $table->text('skills');
-            $table->text('personal_projects');
+            $table->string('basic_info')->nullable();
+            $table->longText('education')->nullable();
+            $table->longText('work_experience')->nullable();
+            $table->longText('skills')->nullable();
+            $table->longText('personal_projects')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
+  
+    
     /**
      * Reverse the migrations.
      */

@@ -37,7 +37,7 @@
 
 
         <!-- Testimonial Start -->
-        {{-- @include('home.testimonial') --}}
+        @include('home.project')
         <!-- Testimonial End -->
         
 

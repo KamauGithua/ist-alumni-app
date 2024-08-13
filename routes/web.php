@@ -133,23 +133,23 @@ Route::get('admin/dashboard',[AdminController::class,'index'])->middleware(['aut
 //CATEGORIES & JOBS
   # view 
 
-  Route::get('view_category', [AdminController::class, 'view_category'])->middleware(['auth','admin']);
+  Route::get('/view_category', [AdminController::class, 'view_category'])->middleware(['auth','admin']);
 
   #add
 
-Route::post('add_category',[AdminController::class,'add_category'])->middleware(['auth','admin']);
+Route::post('/add_category',[AdminController::class,'add_category'])->middleware(['auth','admin']);
 
 #delete
 
-Route::get('delete_category/{id}',[AdminController::class,'delete_category'])->middleware(['auth','admin']);
+Route::get('/delete_category/{id}',[AdminController::class,'delete_category'])->middleware(['auth','admin']);
 
 #edit
 
-route::get('edit_category/{id}',[AdminController::class,'edit_category'])->middleware(['auth','admin']);
+route::get('/edit_category/{id}',[AdminController::class,'edit_category'])->middleware(['auth','admin']);
 
 #update
 
-route::post('update_category/{id}',[AdminController::class,'update_category'])->middleware(['auth','admin']);
+route::post('/update_category/{id}',[AdminController::class,'update_category'])->middleware(['auth','admin']);
 // end of admin category
 
 // start of admin Job Listings
@@ -167,7 +167,7 @@ Route::get('update_job/{id}',[AdminController::class,'update_job'])->middleware(
 
 #update
 
-route::post('edit_job/{id}',[AdminController::class,'edit_job'])->middleware(['auth','super-admin']);
+route::post('edit_job/{id}',[AdminController::class,'edit_job'])->middleware(['auth','admin']);
 
 #search
 Route::get('job_search',[AdminController::class,'job_search'])->middleware(['auth','admin']);
@@ -235,33 +235,39 @@ route::post('update_category/{id}',[AlumniController::class,'update_category'])-
 
 
 
-// portfolio
-// Route::resource('projects', ProjectController::class);
-// Route::get('projects', [AlumniController::class, 'projects'])->middleware(['auth','alumni']);
-
-Route::middleware(['auth'])->group(function () {
-  Route::resource('projects', ProjectController::class);
-});
 
 
-Route::middleware(['auth'])->group(function () {
-
-  Route::get('portfolios', [AlumniController::class, 'portfolios'])->middleware(['auth','alumni']);
 
 
-  // Route::get('portfolios', [PortfolioController::class, 'index'])->name('portfolios.index');
-  Route::get('portfolios/{portfolio}', [PortfolioController::class, 'show'])->name('portfolios.show');
-
-  Route::get('portfolios/create', [PortfolioController::class, 'create'])->name('portfolios.create');
-  Route::post('portfolios', [PortfolioController::class, 'store'])->name('portfolios.store');
-  Route::get('portfolios/{portfolio}/edit', [PortfolioController::class, 'edit'])->name('portfolios.edit');
-  Route::put('portfolios/{portfolio}', [PortfolioController::class, 'update'])->name('portfolios.update');
-  
 
 
-});
+// start of alumni project Listings
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
-  Route::post('portfolios/{portfolio}/approve', [PortfolioController::class, 'approve'])->name('portfolios.approve');
-});
+
+// PROJECTS
+Route::get('/view_project',[AlumniController::class,'view_project']);
+Route::post('/add_project',[AlumniController::class,'add_project']);
+Route::get('/show_project',[AlumniController::class,'show_project']);
+Route::get('/delete_project/{id}',[AlumniController::class,'delete_project']);
+Route::get('/update_project/{id}',[AlumniController::class,'update_project']);
+Route::post('/update_project_confirm/{id}',[AlumniController::class,'update_project_confirm']);
+
+
+
+
+ 
+
+// PORTFOLIO 
+Route::get('/view_portfolio',[AlumniController::class,'view_portfolio']);
+Route::post('/add_portfolio',[AlumniController::class,'add_portfolio']);
+Route::get('/show_portfolio',[AlumniController::class,'show_portfolio']);
+Route::get('/delete_portfolio/{id}',[AlumniController::class,'delete_portfolio']);
+Route::get('/update_portfolio/{id}',[AlumniController::class,'update_portfolio']);
+Route::post('/update_portfolio_confirm/{id}',[AlumniController::class,'update_portfolio_confirm']);
+
+
+// VIEW AND APPLY JOBS 
+
+Route::get('/job_details/{id}',[HomeController::class,'job_details']);
+Route::post('/add_cart/{id}',[HomeController::class,'add_cart']);

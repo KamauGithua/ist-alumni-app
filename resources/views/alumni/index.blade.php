@@ -4,7 +4,7 @@
     @include('admin.css')
   </head>
   <body>
-   @include('admin.header')
+   @include('alumni.header')
     <div class="d-flex align-items-stretch">
       <!-- Sidebar Navigation-->
       @include('alumni.sidebar')
@@ -13,7 +13,7 @@
         <div class="page-header">
           <div class="container-fluid">
 
-            @include('admin.body')
+            @include('alumni.body')
 
 
           </div>

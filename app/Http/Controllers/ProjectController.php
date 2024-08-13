@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class ProjectController extends Controller
 {
@@ -14,7 +14,13 @@ class ProjectController extends Controller
         $projects = auth()->user()->projects;
         return view('projects.index', compact('projects'));
     }
-
+    
+   
+    // public function show_projects()
+    // {
+    //     $projects = Project::with('user')->get(); // Retrieve all projects with their associated user
+    //     return view('projects.show', compact('projects'));
+    // }
    
 
     public function store(Request $request)
@@ -25,7 +31,7 @@ class ProjectController extends Controller
     ]);
 
     // $data['status'] = Project::STATUS_PENDING;
-    $data['user_id'] = auth()->id();  // Ensure the user_id is set
+    // $data['user_id'] = auth()->id();  // Ensure the user_id is set
 
     // Project::create($data);
 

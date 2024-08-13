@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Project;
 use App\Models\Category;
+use App\Models\Portfolio;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -213,24 +215,206 @@ class AlumniController extends Controller
     }
 
 
-    public function projects()
+   
+
+
+   
+    public function view_portfolio(){
+        $portfolio=new portfolio;
+        return view('alumni.portfolio',compact('portfolio'));
+    }
+
+    public function add_portfolio(Request $request)
     {
-        return view('projects.index');
+        $data = new Portfolio();
+
+        $data->basic_info = $request->title;
+        $data->education = $request->education;
+        $data->work_experience = $request->experience;
+        $data->skills = $request->skills;
+        $data->personal_projects = $request->description;
+
+        $image = $request->image;
+
+        if($image)
+        {
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+
+            $request->image->move('portfolio', $imagename);
+
+            $data->image = $imagename;
+        }
+
+        $data->save();
+
+        toastr()->closeOnHover(true)
+        ->closeDuration(5000)
+        ->success('Portfolio Added Successfully');
+
+        return redirect()->back();
+
+    }
+
+    public function show_portfolio(){
+
+        $portfolio =Portfolio::all();
+
+
+        return view('alumni.show_portfolio',compact('portfolio'));
+    }
+    public function delete_portfolio($id)
+    {
+        $data = Portfolio::find($id);
+
+       
+
+        $data->delete();
+
+        toastr()->closeOnHover(true)
+        ->closeDuration(5000)
+        ->success('Portfolio Deleted Successfully');
+
+
+        return redirect()->back();
+    }
+
+    public function update_portfolio($id)
+    {
+        $data = Portfolio::find($id);
+
+        return view('alumni.update_portfolio',compact('data',));
+    }
+
+    public function update_portfolio_confirm(Request $request,$id){
+        
+        $data = Portfolio::find($id);
+    
+            $data->basic_info = $request->title;
+            $data->education = $request->education;
+            $data->work_experience = $request->experience;
+            $data->skills = $request->skills;
+            $data->personal_projects = $request->projects;
+
+            
+    
+           
+    
+            $data->save();
+    
+            toastr()->closeOnHover(true)
+            ->closeDuration(5000)
+            ->success('Portfolio Updated Successfully');
+    
+    
+            return redirect('/view_portfolio');
+        }
+
+
+
+
+
+    // PROJECT LISTINGS
+  
+
+    public function view_project(){
+        $project = Project::all();
+        
+
+        return view('alumni.project', compact('project'));
+    }
+    
+    public function add_project(Request $request)
+    {
+        $data = new Project();
+
+        $data->title = $request->title;
+        $data->type = $request->type;
+        $data->description = $request->description;
+        
+        $image = $request->image;
+
+        if($image)
+        {
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+
+            $request->image->move('project', $imagename);
+
+            $data->image = $imagename;
+        }
+
+        $data->save();
+
+        toastr()->closeOnHover(true)
+        ->closeDuration(5000)
+        ->success('Project Added Successfully');
+
+        return redirect()->back();
+
+    }
+
+    public function show_project(){
+        $project =Project::all();
+
+        return view('alumni.show_project',compact('project'));
+    }
+
+    public function delete_project($id)
+    {
+        $data = Project::find($id);
+
+        $image_path = public_path('projects/'.$data->image);
+
+        if(file_exists($image_path))
+        {
+            unlink($image_path);
+        }
+        $data->delete();
+        
+        toastr()->closeOnHover(true)
+        ->closeDuration(5000)
+        ->success('Project Deleted Successfully');
+
+        return redirect()->back();
+    }
+
+    public function update_project($id)
+    {
+        $data = Project::find($id);
+
+
+        return view('alumni.update_project',compact('data'));
     }
 
 
+     public function update_project_confirm(Request $request,$id){
+        $data = Project::find($id);
+    
+            $data->title = $request->title;
+            $data->type = $request->type;
+            $data->description = $request->description;
+            
+    
+            $image = $request->image;
+            if($image)
+            {
+                $imagename = time().'.'.$image->getClientExtension();
+                $request->image->move('project',$imagename);
+                $data->image = $imagename;
+            }
+    
+            $data->save();
+    
+            toastr()->closeOnHover(true)
+            ->closeDuration(5000)
+            ->success('Project Updated Successfully');
+    
+    
+            return redirect('/view_project');
+        }
 
-    public function create()
-    {
-        return view('portfolios.create');
-    }
+     }
 
-    public function portfolios()
-    {
-        // $portfolios = Portfolio::where('user_id', auth()->id())->get();
-        return view('portfolios.index', compact('portfolios'));
-    }
-}
+
 
 
 

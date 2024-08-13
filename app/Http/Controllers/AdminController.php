@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Project;
 use App\Models\Category;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
@@ -15,7 +16,9 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
-//
+
+
+
     
     public function view_category()
     {
@@ -215,4 +218,11 @@ class AdminController extends Controller
     {
         return view('projects.index');
     }
+
+public function view_project()
+    {
+        $projects = Project::with('user')->get(); // Retrieve all projects with their associated user
+        return view('superadmin.view_project', compact('projects'));
+    }
+
 }

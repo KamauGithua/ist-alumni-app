@@ -93,7 +93,7 @@
                     </div>
                     <div class="input_deg">
                         <label for="">Pay</label>
-                        <input type="text" name="pay" >
+                        <input type="number" name="pay" >
                     </div>
                     <div class="input_deg">
                         <label for="">Job Image</label>

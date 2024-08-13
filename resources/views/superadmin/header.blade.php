@@ -4,7 +4,7 @@
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="navbar-header">
           <!-- Navbar Header--><a href="{{url('/')}}" class="navbar-brand">
-            <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">ADMIN</strong><strong>DASHBOARD</strong></div>
+            <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">SUPER-ADMIN</strong><strong>DASHBOARD</strong></div>
             <div class="brand-text brand-sm"><strong class="text-primary">K</strong><strong>G</strong></div></a>
         </div>
         <!-- Sidebar Toggle Btn-->

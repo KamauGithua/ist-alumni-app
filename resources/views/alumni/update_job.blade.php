@@ -2,6 +2,8 @@
 <html>
   <head> 
     @include('admin.css')
+    <base href="/public">
+
     <style type="text/css">
     .div_deg
     {
