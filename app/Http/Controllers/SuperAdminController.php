@@ -198,8 +198,10 @@ class SuperAdminController extends Controller
     
     //ROLES
 
+     
     public function role()
     {
+        
         
         $roles = Role::get();
         return view('role-permission.role.index', ['roles' => $roles]);
@@ -220,19 +222,7 @@ class SuperAdminController extends Controller
 
 
 }
-// side notes
 
- // if($search)
-        //  {$job = JobListing::where('title','like','%'.$search.'%')
-        //     ->orWhere('category','like','%'.$search.'%')
-        //         ->paginate(3);
-        //  }
-        //  else{
-        //     $job=JobListing::paginate(5);
-        //  }
-
-
-        // ROLES 
         
 
 

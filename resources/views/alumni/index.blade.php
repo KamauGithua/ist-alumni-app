@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head> 
-    @include('admin.css')
+    @include('alumni.css')
   </head>
   <body>
    @include('alumni.header')

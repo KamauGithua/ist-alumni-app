@@ -102,26 +102,22 @@ Route::get('job_search',[SuperAdminController::class,'job_search'])->middleware(
 #permissions
 
   Route::get('permission', [SuperAdminController::class, 'permission'])->middleware(['auth','super-admin']);
-
   Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
-      Route::resource('permissions', PermissionController::class);
+  Route::resource('permissions', PermissionController::class);
   
   #Roles
-  Route::get('role', [SuperAdminController::class, 'role'])->middleware(['auth','super-admin']);
-  
-  
+  // Route::get('role', [SuperAdminController::class, 'role'])->middleware(['auth','super-admin']);
+  Route::get('role', [SuperAdminController::class, 'role']);
+
   Route::resource('roles', RoleController::class);
   Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
-  
   Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
   Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
   
   #users
   Route::get('user', [SuperAdminController::class, 'user'])->middleware(['auth','super-admin']);
-  
-  
   Route::resource('users', UserController::class);
-      Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
+  Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
 
 
 
@@ -182,8 +178,6 @@ Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'd
 
 #Roles
 Route::get('role', [AdminController::class, 'role'])->middleware(['auth','admin']);
-
-
 Route::resource('roles', RoleController::class);
 Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
 Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);

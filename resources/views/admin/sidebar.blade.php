@@ -20,8 +20,8 @@
 
           
           
-          <li><a href="" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Job Listings </a>
-            <ul id="" class="collapse list-unstyled ">
+          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Job Listings </a>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a href="{{ url('add_job') }}">Add Job</a></li>
               <li><a href="{{ url('view_job') }}">View Job</a></li>
             </ul>
